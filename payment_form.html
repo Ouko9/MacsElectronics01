@@ -1,0 +1,103 @@
+<!-- payment_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #6610f2;
+        }
+
+        .payment-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pay-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .cancel-button {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .book-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .action-button:hover {
+            background-color: #6c757d;
+        }
+    </style>
+    <title>Payment Form</title>
+</head>
+<body>
+
+<div class="payment-container">
+    <h2>Payment Details</h2>
+
+    <!-- Payment Form -->
+    <form>
+        <label for="contact" class="form-input">Contact:</label>
+        <input type="text" id="contact" name="contact" class="form-input" placeholder="Enter contact">
+
+        <label for="amount" class="form-input">Amount:</label>
+        <input type="number" id="amount" name="amount" class="form-input" placeholder="Enter amount">
+
+        <!-- Additional payment form fields can be added as needed -->
+
+        <div class="button-container">
+            <button type="button" class="action-button pay-button">Pay</button>
+            <button type="button" class="action-button cancel-button">Cancel</button>
+            <button type="button" class="action-button book-button">Book</button>
+        </div>
+
+        <li><a href="{% url 'login' %}"><dark>Log Out</dark></a></li>
+
+    </form>
+</div>
+
+
+</body>
+</html>

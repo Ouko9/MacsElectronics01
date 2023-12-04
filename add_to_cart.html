@@ -1,0 +1,37 @@
+
+
+{% block content %}
+  <h2>PRODUCTS ADDED TO CART</h2>
+
+  {% if cart_items %}
+    <ul>
+      {% for item in cart_items %}
+        <li>
+          <img src="{{ item.product_image.url }}" alt="{{ item.product_name }}" style="max-width: 100px;">
+          <p>{{ item.product_name }} - Ksh{{ item.product_price }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+          <form action="{% url 'remove_from_cart' item.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Remove</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+    <p>Total: Ksh{{ total_price }}</p>
+
+    <ul>
+      <li>
+        <a href="{% url 'image' %}" class="btn btn-danger">Proceed to Checkout</a>
+      </li>
+    </ul>
+
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+
+  <pre>{{ cart_items }}</pre> {# Debugging line to display cart items in the template #}
+
+  <ul>
+    <li><a href="{% url 'upload' %}" class="btn btn-secondary">Continue Shopping</a></li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+showw
+
+      {% if images %}
+  <div>
+    {% for image in images %}
+      <img src="{{ image.image.url }}" alt="{{ image.title }}">
+      <p>Title: {{ image.title }}</p>
+      <p>Price: {{ image.price }}</p>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No images available.</p>
+{% endif %}
+

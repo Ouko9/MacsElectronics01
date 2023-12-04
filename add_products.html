@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #babbbc; /* Set your desired background color */
+        }
+
+        .form-container {
+            text-align: center;
+            margin-bottom: 100px;
+            background-color: #ffffff; /* Set form container background color */
+            padding: 100px;
+            border-radius: 80px;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .save-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .action-button:hover {
+            background-color: #6c757d;
+        }
+
+        .form-input {
+            margin: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .saved-products {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #ffffff; /* Set saved products container background color */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+    </style>
+    <title>Product Form</title>
+    <h1>Products</h1>
+</head>
+<body>
+{% for product in products %}
+<form method="post" action="{% url 'update_visibility' product.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="checkbox" name="is_visible" {% if product.is_visible %}checked{% endif %}>
+    <button type="submit">Update</button>
+</form>
+{% endfor %}
+
+        <label for="name" class="form-input">Name:</label>
+        <input type="text" id="name" name="name" class="form-input">
+
+        <label for="price" class="form-input">Price:</label>
+        <input type="number" id="price" name="price" class="form-input">
+
+         <label for="price" class="form-input">Description:</label>
+        <input type="text" id="description" name="description" class="form-input">
+
+
+        <div class="button-container">
+            <button type="button" class="action-button add-button" onclick="addItem()">Add</button>
+            <button type="button" class="action-button delete-button" onclick="deleteItem()">Delete</button>
+            <button type="button" class="action-button save-button" onclick="saveItem()">Save</button>
+            <button type="button" class="action-button pay-button" onclick="redirectToPaymentForm()">Pay</button>
+        </div>
+
+
+
+    </form>
+</div>
+
+<div class="saved-products" id="savedProducts">
+    <h2>Saved Products</h2>
+    <!-- Display saved products here -->
+</div>
+
+<script>
+    function addItem() {
+        alert('Item added!');
+        // Add your logic to handle the "Add" button action
+    }
+
+    function deleteItem() {
+        alert('Item deleted!');
+        // Add your logic to handle the "Delete" button action
+    }
+    function redirectToPaymentForm() {
+        alert('Redirecting to the payment form!');
+        window.location.href = '{% url "payment_form" %}';
+
+    }
+
+    function saveItem() {
+        alert('Item saved!');
+        // Add your logic to handle the "Save" button action
+
+        // For demonstration purposes, add a saved product to the display area
+        const savedProductsElement = document.getElementById('savedProducts');
+        const productName = document.getElementById('name').value;
+        const productPrice = document.getElementById('price').value;
+        const savedProductText = document.createElement('p');
+        savedProductText.textContent = `${productName} - $${productPrice}`;
+        savedProductsElement.appendChild(savedProductText);
+    }
+
+
+
+</script>
+
+</body>
+</html>
